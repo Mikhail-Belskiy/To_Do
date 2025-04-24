@@ -10,8 +10,8 @@ async def get_connection():
 async def create_task(task: TaskCreate) -> Task:
     conn = await get_connection()
     row = await conn.fetchrow(
-        'INSERT INTO tasks(title, description, due_date) VALUES($1, $2, $3) RETURNING *',
-        task.title, task.description, task.due_date
+        'INSERT INTO tasks(title, description, deadline) VALUES($1, $2, $3) RETURNING *',
+        task.title, task.description, task.deadline
     )
     await conn.close()
     return Task(**row)
@@ -41,9 +41,9 @@ async def update_task(task_id: int, task_update: TaskUpdate) -> Optional[Task]:
     if task_update.description is not None:
         columns.append("description = $2")
         values.append(task_update.description)
-    if task_update.due_date is not None:
-        columns.append("due_date = $3")
-        values.append(task_update.due_date)
+    if task_update.deadline is not None:
+        columns.append("deadline = $3")
+        values.append(task_update.deadline)
     if task_update.completed is not None:
         columns.append("completed = $4")
         values.append(task_update.completed)

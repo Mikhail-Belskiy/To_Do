@@ -5,10 +5,10 @@ from typing import Optional
 class TaskCreate(BaseModel):
     title: str
     description: Optional[str] = None
-    due_date: datetime
+    deadline: datetime
 
 class TaskUpdate(BaseModel):
     title: Optional[str] = None
     description: Optional[str] = None
-    due_date: Optional[datetime] = None
+    deadline: Optional[datetime] = None
     completed: Optional[bool] = None

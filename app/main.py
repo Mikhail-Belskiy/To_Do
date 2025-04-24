@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.routers import router
-from lifespan import lifespan
+from app.lifespan import lifespan
 
 app = FastAPI(
     title='To_do',

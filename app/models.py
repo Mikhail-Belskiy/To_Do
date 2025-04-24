@@ -6,7 +6,7 @@ class Task(BaseModel):
     id: Optional[int]
     title: str
     description: Optional[str] = None
-    crested_date: datetime
+    created_date: datetime
     deadline: datetime
     completed: bool
 
