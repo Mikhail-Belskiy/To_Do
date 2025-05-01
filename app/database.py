@@ -1,11 +1,15 @@
 import asyncpg
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
-DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://{}:{}@localhost/{}'.format(
-    os.getenv('POSTGRES_USER'),
-    os.getenv('POSTGRES_PASSWORD'),
-    os.getenv('POSTGRES_DB')
-))
+DATABASE_URL = (
+    f"postgresql://{os.getenv('POSTGRES_USER')}:"
+    f"{os.getenv('POSTGRES_PASSWORD')}@"
+    f"{os.getenv('POSTGRES_HOST')}:"
+    f"{os.getenv('POSTGRES_PORT')}/"
+    f"{os.getenv('POSTGRES_DB')}"
+)
 
 async def create_database():
     conn = await asyncpg.connect(DATABASE_URL)
